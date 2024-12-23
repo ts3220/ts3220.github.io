@@ -834,11 +834,11 @@ function drawStars() {
       }      
     }
     let init_flag = false;
-      // music 修改音乐
-      let music_url = "http://music.163.com/song/media/outer/url?id=1892513656.mp3";
-      let _music = new Audio(music_url);
-      window.onclick = function() {
-        if(init_flag) return;
+    // music 修改音乐
+    let music_url = "http://music.163.com/song/media/outer/url?id=1892513656.mp3";
+    let _music = new Audio(music_url);
+    function handleTap(event) {
+      if(init_flag) return;
         init_flag = true;
         _music.play();
         init();
@@ -850,7 +850,13 @@ function drawStars() {
         mainTl.add(starTl, 0);
         gsap.globalTimeline.timeScale(1.5); //  圣诞树开始绘画时小光点动画的绘画速率，越大越快
         drawStars();
-      }
+  }
+
+  // 为桌面和移动设备添加事件监听器
+  window.addEventListener('click', handleTap);
+  window.addEventListener('touchstart', handleTap, { passive: false }); // passive: false 用于允许event.preventDefault()在touchstart事件中工作
+      
+      
   
   </script>
 </html>
